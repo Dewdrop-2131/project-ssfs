@@ -7,7 +7,7 @@ const Header = () => {
     <nav className="navbar">
     <div className="logo-container">
     <Link to="/"><img className="logo1" src={logoImage} alt="Logo"/></Link>
-    <div className="logo">StellarScape Facility Services</div>
+    <Link to="/" className="logo-dec"><div className="logo">StellarScape Facility Services</div></Link>
     </div>
       <div className="buttons">
         <Link to="/about"><button>About</button></Link>
