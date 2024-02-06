@@ -80,14 +80,14 @@ function extractDriveId(url) {
 
     <div className="containerF">
       <div className="leftDiv">
-      <p style={{ textAlign:"center"}}><h2><u>Vision</u></h2></p>
+      <p style={{ textAlign:"center", fontSize:"25px"}}><u>Vision</u></p>
       <img className="imageVision" src={visionImg} alt="drive image"/>
       <p style={{ textAlign:"left"}}>{visionText}</p>
       </div>
       <div className="rightDiv">
-      <p style={{ textAlign:"center"}}><h2><u>Mission</u></h2></p>
+      <p style={{ textAlign:"center", fontSize:"25px"}}><u>Mission</u></p>
       <img className="imageMission" src={missionImg} alt="drive image"/>
-      <p style={{ textAlign:"left"}}>{missionText}</p>
+      <p style={{ textAlign:"center"}}>{missionText}</p>
       </div>
     </div>
 
@@ -106,5 +106,6 @@ function extractDriveId(url) {
     
   );
 };
+
 
 export default Home;

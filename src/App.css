@@ -3,7 +3,7 @@
 .App {
   text-align: center;
   .main-container{
-    min-height: 72vh;
+    min-height: 80vh;
   }
 }
 
@@ -400,21 +400,24 @@ p {
 
 .leftDivAbout {
   text-align: left;
-  width: 50%; 
-  padding-left: 20px;
-  padding-top: 20px;
+  width: 70%; 
+  padding-left: 70px;
+  padding-top: 30px;
+  line-height: 2;
 }
 
 .rightDivAbout {
   margin-left: auto;
-  text-align: left;
-  padding-right: 20px;
-  padding-top: 20px;
-  width: 50%; 
+  text-align: end;
+  padding-right: 70px;
+  padding-top: 30px;
+  width: 70%;
+  line-height: 2;
 }
 
 .rightDivAboutHeading{
-  text-align: left;
+  text-align: right;
+
 }
 
 /* Services CSS */

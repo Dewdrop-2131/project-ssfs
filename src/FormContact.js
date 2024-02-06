@@ -22,7 +22,7 @@ const FormContact = () => {
         { id: "mobile", label: docData["mobile"], type: 'text', placeholder: docData["mobile"] },
         { id: "address", label: docData["address"], type: 'text', placeholder: docData["address"] },
         { id: "contact_timings", label: docData["contact_timings"], type: 'text', placeholder: docData["contact_timings"] },
-        { id: "service_needed", label: docData["service_needed"], type: 'text', placeholder: docData["service_needed"] },
+        { id: "service_needed", label: "Services", type: 'options', services: docData["service_needed"] },
       ];
       setFormFields(mappedFields);
       console.log("Document data:", mappedFields);
@@ -80,29 +80,27 @@ const FormContact = () => {
             </div>
             <div className="col-75">
             {field.id === "service_needed" ? (
-        <select
-          id={field.id}
-          name={field.id}
-          value={formData[field.id] || ''}
-          onChange={handleInputChange}
-        >
-          <option value="">Select a service</option>
-          <option value="Service 1">Service 1</option>
-          <option value="Service 2">Service 2</option>
-          <option value="Service 3">Service 3</option>
-          <option value="Service 4">Service 4</option>
-          <option value="Service 5">Service 5</option>
-        </select>
-      ) : (
-        <input
-          type={field.type}
-          id={field.id}
-          name={field.id}
-          placeholder={field.placeholder}
-          value={formData[field.id] || ''}
-          onChange={handleInputChange}
-        />
-      )}
+              <select
+                id={field.id}
+                name={field.id}
+                value={formData[field.id] || ''}
+                onChange={handleInputChange}
+              >
+                <option value="">Select a service</option>
+                {field.services.map((service, index) => (
+                  <option key={index} value={service}>{service}</option>
+                ))}
+              </select>
+            ) : (
+              <input
+                type={field.type}
+                id={field.id}
+                name={field.id}
+                placeholder={field.placeholder}
+                value={formData[field.id] || ''}
+                onChange={handleInputChange}
+              />
+            )}
             </div>
           </div>
         ))}
@@ -130,4 +128,5 @@ const FormContact = () => {
 };
 
 // Export the ContactForm component for use in other files
+
 export default FormContact;
