@@ -24,6 +24,13 @@
   font-weight: bold;
   text-align: left;
   margin-left: 10px;
+  /* color:white; */
+  
+}
+
+.logo-dec{
+  text-decoration: none;
+  color: white;
 }
 
 .logo1{
@@ -120,49 +127,6 @@ button:hover {
 }
 
 
-/* Form CSS */
-
-/* AnotherForm.css
-
-.another-form-container {
-  max-width: 400px;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-}
-
-label {
-  display: block;
-  margin: 10px 0;
-}
-
-input,
-textarea {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 15px;
-}
-
-checkbox {
-  margin-right: 5px;
-}
-
-button {
-  background-color: #3498db;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #2980b9;
-} */
-
-/* App.css */
 /* ContactForm.css */
 
 /* Style inputs, select elements, and textareas */
@@ -429,9 +393,10 @@ p {
   flex-direction: column;
 }
 
-/* .row {
+.row {
   display: flex;
-} */
+}
+
 
 .leftDivAbout {
   text-align: left;
@@ -441,9 +406,15 @@ p {
 }
 
 .rightDivAbout {
-  text-align: right;
+  margin-left: auto;
+  text-align: left;
   padding-right: 20px;
-  /* width: 50%;  */
+  padding-top: 20px;
+  width: 50%; 
+}
+
+.rightDivAboutHeading{
+  text-align: left;
 }
 
 /* Services CSS */
@@ -505,7 +476,7 @@ p {
 }
 
 
-/* Updated CSS for FirstPage */
+/* Updated CSS for FirstPage or Home */
 
 .above {
   padding: 30px;
@@ -542,10 +513,11 @@ p {
   text-align: left;
 }
 
-.leftDiv,
+/*  commented to fit the images of vision and mission to center*/
+/* .leftDiv,
 .rightDiv {
   text-align: justify;
-}
+} */
 
 .centerDiv {
   text-align: center;
@@ -563,6 +535,9 @@ p {
 }
 
 .slick-slider {
+  div {
+    display: flex !important;
+  }
   width: 100%;
   margin: 0 auto;
   overflow: hidden; /* Hide overflowing content */
@@ -594,6 +569,11 @@ p {
   transform: scale(1.05);
 }
 
+.imageVision, .imageMission{
+ width: 220px;
+ height: 135px;
+ 
+}
 
 
 
