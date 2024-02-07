@@ -1,16 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import { collection, getDocs, where } from "firebase/firestore";
+import { db } from './firebase';
 
 const Footer = () => {
+
+  const[name, setName] = useState('');
+  const[hod, setHod] = useState('');
+  const[email, setEmail] = useState('');
+  const[phone, setPhone] = useState('');
+
+  const fetchPost = async () => {
+    const querySnapshot = await getDocs(collection(db, "collection"), where("name", "==", "contact_us"));
+
+if (querySnapshot.size > 0) {
+    // Document found
+    const docData = querySnapshot.docs[2].data();
+    setName(docData.title);
+    setHod(docData.address);
+    setEmail(docData.email);
+    setPhone(docData.phone);
+    console.log("Document data:", docData);
+} else {
+    // Document not found
+    console.log("Document 'about_us' not found"); 
+}}
+
+// Effect to fetch form fields on component mount
+useEffect(() => {
+fetchPost();
+}, []); //data
+
   return (
     <footer className="footer">
       <div className="footer-content">
-        <div className="left-text left">
+        <div className="left-text left" style={{lineHeight:"2", marginTop:"20px", marginBottom:"0"}}>
           <section>StellarScape Facility Services</section>
-          <section>H.O, Bengaluru</section>
-          <section>Email: new@asd.com</section>
-          <section>Phone Number: +91 9876543210</section>
+          <section>Head Office, Bangalore</section>
+          <section>Email: stellarscape.fs@gmail.com</section>
+          <section>Phone Number: +91-7829202312</section>
         </div>
         <div className="right-text right">
           <p>
@@ -57,6 +86,7 @@ const Footer = () => {
           </p>
         </div>
       </div>
+      <p style={{fontSize:"10px", textAlign:"center", marginBottom:"5px", marginTop:"25px"}}>Developed by EIS</p>
     </footer>
   );
 };

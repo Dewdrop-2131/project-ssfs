@@ -15,6 +15,9 @@ const Services = () => {
         // Document found
         const docData = querySnapshot.docs[0].data();
         setServiceList(docData.list);
+        // setServiceDetails(docData.list[0]); // Set details for the first item
+        // setSelectedItem(0); // Set selected item index to 0
+        // setShowBox(false); // Show the box for the first item
     } else {
         // Document not found
         console.log("Document 'services' not found");
@@ -50,6 +53,8 @@ const Services = () => {
   };
 
   return (
+    <div>
+    <h3><u>Services we provide</u></h3>
     <div style={{display: "flex", justifyContent: "space-between"}}>
       <ul className="styled-list">
       {serviceList.map((service, index) => (
@@ -61,7 +66,7 @@ const Services = () => {
 
       {showBox && (
         <div className="info-box">
-          <p>{serviceDetails.title}</p>
+          <p style={{padding:"0 60px", fontWeight:"bold", fontSize:"20px"}}>{serviceDetails.title}</p>
           <br/>
           <img
             alt="testimonial"
@@ -69,15 +74,16 @@ const Services = () => {
             className="mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100"
             src={`https://drive.google.com/thumbnail?id=${serviceDetails.image}`}
           />
-          <p>{serviceDetails.description}</p>
+          <p style={{lineHeight: "2"}}>{serviceDetails.description}</p>
           {serviceDetails.benefit && 
           <h2>Benefits</h2>}
           {serviceDetails.benefit && serviceDetails.benefit.map((benefits, index) => (
             <p><li key={index}>{benefits}</li></p>
           ))}
-          <button onClick={closeBox}>Close</button>
+          {/* <button onClick={closeBox}>Close</button> */}
         </div>
       )}
+    </div>
     </div>
   );
 };
