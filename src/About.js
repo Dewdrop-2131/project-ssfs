@@ -1,4 +1,3 @@
-// // React Component
 import React, { useState, useEffect } from 'react';
 import { collection, getDocs, doc } from "firebase/firestore";
 import {db} from './firebase';
@@ -28,7 +27,7 @@ const About = () => {
 
       // Set keyPersons state
         setKeyPersons(subCollectionData);
-        console.log("keypersons", keyPersons);
+        console.log("keypersons111111", keyPersons);
   } else {
       // Document not found
       console.log("Document 'about_us' not found");
@@ -42,22 +41,23 @@ useEffect(() => {
 
 
   useEffect(() => {
+    setKeyPersons(keyPersons);
     console.log("keypersons", keyPersons);
   }, [keyPersons]);
 
   return (
     <section className="text-gray-600 body-font">
      <div className="outerDiv">
-      <div className="row">
+      <div className="row" style={{paddingTop: '10vh'}}>
         <div className="leftDivAbout">
           <p style={{fontSize:"20px"}}><h3><u>{whatAreWe}</u></h3></p>
-          <p>{whatAreWeDes}</p>
+          <p className='whatAreWeDes'>{whatAreWeDes}</p>
         </div>
       </div>
-      <div className="row">
+      <div className="row" style={{paddingTop: '10vh'}}>
         <div className="rightDivAbout">
           <p className="rightDivAboutHeading" style={{fontSize:"20px"}}><h3><u>{howAreWeBuilt}</u></h3></p>
-          <p>{howAreWeBuiltDes}</p>
+          <p className='howAreWeBuiltDes'>{howAreWeBuiltDes}</p>
         </div>
       </div>
     </div> 
@@ -67,16 +67,25 @@ useEffect(() => {
             <div key={index} className="lg:w-1/3 lg:mb-0 mb-6 p-4">
               <div className="h-full text-center">
                 <img
-                  alt="testimonial"
+                  alt={testimonial.name}
                   style={{width: '12rem', height: '15rem'}}
                   className="mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100"
                   src={`https://drive.google.com/thumbnail?id=${testimonial.image}`}
+                  loading="lazy"
                 />
                 <h2 className="text-gray-900 font-bold title-font tracking-wider text-sm" style={{fontSize: '20px'}}>{testimonial.name}</h2>
                 <p className="text-gray-500">{testimonial.role}</p>
               </div>
             </div>
           ))}
+        </div>
+        <div className="flex flex-wrap -m-4" style={{margin: '0 15%', justifyContent: 'center'}}>
+          <div className="lg:w-1/3 lg:mb-0 mb-6 p-4">
+            <div className="h-full text-center">
+              <h2 className="text-gray-900 font-bold title-font tracking-wider text-sm" style={{fontSize: '20px'}}>Ganesh K</h2>
+              <p className="text-gray-500">Managing Director</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
