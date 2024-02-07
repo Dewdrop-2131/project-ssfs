@@ -4,15 +4,17 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { collection, getDocs, where } from "firebase/firestore";
 import {db} from './firebase';
+import vision from './Vision.png';
+import mission from './mission.png';
 
 
 const Home = () => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 600,
     slidesToShow: 2,
-    slidesToScroll: 2,
+    slidesToScroll: 2.5,
     autoplay: true,
     autoplaySpeed: 2000, // Adjust the speed of auto-sliding in milliseconds
   };
@@ -28,82 +30,94 @@ const Home = () => {
   const fetchPost = async () => {
     const querySnapshot = await getDocs(collection(db, "collection"), where("name", "==", "contact_us"));
 
-if (querySnapshot.size > 0) {
-    // Document found
-    const docData = querySnapshot.docs[3].data();
-    setWebsite(docData.description);
-    const driveId = extractDriveId(docData.vision_image);
-    let visionImgURl = "https://drive.google.com/thumbnail?id=" + driveId;
-    setVisionImg(visionImgURl);
-    setVisionText(docData.vision);
-    const driveId2 = extractDriveId(docData.mission_image);
-    let misionImgURl = "https://drive.google.com/thumbnail?id=" + driveId2;
-    setMissionImg(misionImgURl);
-    setMissionText(docData.mission);
-    setKeyGoals(docData.key_goals);
-    setServices(docData.services);
-    console.log("Document data:", docData);
-} else {
-    // Document not found
-    console.log("Document 'about_us' not found");
-  
-}}
+    if (querySnapshot.size > 0) {
+        // Document found
+        const docData = querySnapshot.docs[3].data();
+        setWebsite(docData.description);
+        const driveId = extractDriveId(docData.vision_image);
+        let visionImgURl = "https://drive.google.com/thumbnail?id=" + driveId;
+        setVisionImg(visionImgURl);
+        setVisionText(docData.vision);
+        const driveId2 = extractDriveId(docData.mission_image);
+        let misionImgURl = "https://drive.google.com/thumbnail?id=" + driveId2;
+        setMissionImg(misionImgURl);
+        setMissionText(docData.mission);
+        setKeyGoals(docData.key_goals);
+        setServices(docData.services);
+        console.log("Document data:", docData);
+    } else {
+        // Document not found
+        console.log("Document 'about_us' not found");
+      
+    }
+  }
 
 // Effect to fetch form fields on component mount
-useEffect(() => {
-fetchPost();
-}, []); //data
+  useEffect(() => {
+    fetchPost();
+  }, []); //data
 
-function extractDriveId(url) {
-  const match = url.match(/\/d\/([a-zA-Z0-9-_]+)\//);
-  return match ? match[1] : null;
-}
+  function extractDriveId(url) {
+    const match = url.match(/\/d\/([a-zA-Z0-9-_]+)\//);
+    return match ? match[1] : null;
+  }
 
 
   return (
     <section>
-    <div>
-    <Slider {...settings}>
-    {services.map((service, index) => (
-    <div>
-       <img src={`https://drive.google.com/thumbnail?id=${service}`} alt="index" style={{ padding: '20px 50px', width: '600px', height: '300px', borderRadius: '50px' }}/>
-    </div>
-            ))}
-        </Slider>
-    </div>
-
-    <div>
-    <h2 className="above">
-        {website}
-    </h2>
-    </div>
-
-    <div className="containerF">
-      <div className="leftDiv">
-      <p style={{ textAlign:"center", fontSize:"25px"}}><u>Vision</u></p>
-      <img className="imageVision" src={visionImg} alt="drive image"/>
-      <p style={{ textAlign:"center"}}>{visionText}</p>
-      </div>
-      <div className="rightDiv">
-      <p style={{ textAlign:"center", fontSize:"25px"}}><u>Mission</u></p>
-      <img className="imageMission" src={missionImg} alt="drive image"/>
-      <p style={{ textAlign:"center"}}>{missionText}</p>
-      </div>
-    </div>
-
-    <div className="containerC">
-      <div className="centerDiv">
-      <p><h3><u>Key Goals</u></h3></p>
       <div>
-      {keyGoals.map((goal, index) => (
-        <p><li key={index}>{goal}</li></p>
-      ))}
-    </div>
+        <Slider {...settings}>
+          {services.map((service) => (
+            <div key={service.id}>
+              <img 
+                src={`https://drive.google.com/thumbnail?id=${service}`} 
+                alt="service" 
+                style={{ padding: '20px 50px', width: '600px', height: '300px', borderRadius: '50px' }}
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </Slider>
       </div>
-    </div>
 
+      <div>
+        <h2 className="above">{website}</h2>
+      </div>
+
+      <div className="containerF">
+        <div className="leftDiv">
+          <p style={{ textAlign:"center", fontSize:"25px", fontWeight: 'bold', fontFamily: 'math'}}><u>Vision</u></p>
+          <img 
+            className="imageVision"
+            src={vision}
+            alt="Vision"
+            loading="lazy"
+          />
+          <p style={{ textAlign:"center", fontWeight: 'bold', fontFamily: 'math'}}>{visionText}</p>
+        </div>
+        <div className="rightDiv">
+          <p style={{ textAlign:"center", fontSize:"25px", fontWeight: 'bold', fontFamily: 'math'}}><u>Mission</u></p>
+          <img
+            className="imageMission"
+            src={mission}
+            alt="Mission"
+            loading="lazy"
+          />
+          <p style={{ textAlign:"center", fontWeight: 'bold', fontFamily: 'math'}}>{missionText}</p>
+        </div>
+      </div>
+
+      <div className="containerC">
+        <div className="centerDiv">
+          <p><h1><u>Key Goals</u></h1></p>
+          <div style={{lineHeight: '2'}}>
+              {keyGoals.map((goal) => (
+                <li key={goal.id}>{goal}</li>
+              ))}
+          </div>
+        </div>
+      </div>
     </section>
-    
   );
 };
 
