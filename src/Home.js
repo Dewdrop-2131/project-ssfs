@@ -66,7 +66,7 @@ function extractDriveId(url) {
     <Slider {...settings}>
     {services.map((service, index) => (
     <div>
-       <img src={`https://drive.google.com/thumbnail?id=${service}`} alt="index" style={{ padding: '20px 50px', width: '600px', height: '300px' }}/>
+       <img src={`https://drive.google.com/thumbnail?id=${service}`} alt="index" style={{ padding: '20px 50px', width: '600px', height: '300px', borderRadius: '50px' }}/>
     </div>
             ))}
         </Slider>
@@ -82,7 +82,7 @@ function extractDriveId(url) {
       <div className="leftDiv">
       <p style={{ textAlign:"center", fontSize:"25px"}}><u>Vision</u></p>
       <img className="imageVision" src={visionImg} alt="drive image"/>
-      <p style={{ textAlign:"left"}}>{visionText}</p>
+      <p style={{ textAlign:"center"}}>{visionText}</p>
       </div>
       <div className="rightDiv">
       <p style={{ textAlign:"center", fontSize:"25px"}}><u>Mission</u></p>
