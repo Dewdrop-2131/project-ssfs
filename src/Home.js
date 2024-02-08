@@ -34,13 +34,9 @@ const Home = () => {
         // Document found
         const docData = querySnapshot.docs[3].data();
         setWebsite(docData.description);
-        const driveId = extractDriveId(docData.vision_image);
-        let visionImgURl = "https://drive.google.com/thumbnail?id=" + driveId;
-        setVisionImg(visionImgURl);
+        setVisionImg(docData.vision_image);
         setVisionText(docData.vision);
-        const driveId2 = extractDriveId(docData.mission_image);
-        let misionImgURl = "https://drive.google.com/thumbnail?id=" + driveId2;
-        setMissionImg(misionImgURl);
+        setMissionImg(docData.mission_image);
         setMissionText(docData.mission);
         setKeyGoals(docData.key_goals);
         setServices(docData.services);
@@ -89,7 +85,7 @@ const Home = () => {
           <p style={{ textAlign:"center", fontSize:"25px", fontWeight: 'bold', fontFamily: 'math'}}><u>Vision</u></p>
           <img 
             className="imageVision"
-            src={vision}
+            src={`https://drive.google.com/thumbnail?id=${visionImg}`}
             alt="Vision"
             loading="lazy"
           />
@@ -99,7 +95,7 @@ const Home = () => {
           <p style={{ textAlign:"center", fontSize:"25px", fontWeight: 'bold', fontFamily: 'math'}}><u>Mission</u></p>
           <img
             className="imageMission"
-            src={mission}
+            src={`https://drive.google.com/thumbnail?id=${missionImg}`}
             alt="Mission"
             loading="lazy"
           />

@@ -40,8 +40,8 @@ const Header = () => {
         <Link to="/">
             <img 
               className="logo1" 
-              // src={`https://drive.google.com/thumbnail?id=${images}`} 
-              src={logo}
+              src={`https://drive.google.com/thumbnail?id=${images}`} 
+              // src={logo}
               alt='logo' 
               loading="lazy"
             />
