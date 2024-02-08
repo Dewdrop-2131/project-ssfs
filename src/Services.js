@@ -73,7 +73,7 @@ const Services = () => {
           />
           <p style={{lineHeight: "2", padding: '0 15vh', textAlign: 'justify'}}>{serviceDetails.description}</p>
           {serviceDetails.benefit && 
-          <h2>Benefits</h2>}
+            (serviceDetails.title !== 'ADMINISTRATIVE SERVICES' && <h2>Benefits</h2>)}
           {serviceDetails.benefit && serviceDetails.benefit.map((benefits, index) => (
             <p style={{padding:"0 10%"}}><li key={index}>{benefits}</li></p>
           ))}
