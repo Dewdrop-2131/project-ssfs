@@ -45,7 +45,7 @@ fetchPost();
           <section>Email: {email}</section>
           <section>Phone Number: {phone}</section>
         </div>
-        <div className="right-text right">
+        {/* <div className="right-text right">
           <p>
             <Popup
               trigger={<u className="term">Terms & Conditions</u>}
@@ -88,7 +88,7 @@ fetchPost();
               )}
             </Popup>
           </p>
-        </div>
+        </div> */}
       </div>
       <p style={{fontSize:"15px", textAlign:"center", marginBottom:"5px", marginTop:"25px"}}>Developed by 
         <button style={{padding: '10px 5px'}}><u>EIS</u></button>
