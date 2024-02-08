@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { collection, getDocs, doc } from "firebase/firestore";
 import {db} from './firebase';
+import madhan from './Madhan.png';
+import shravan from './ShravanDR.png';
 
 const About = () => {
 
@@ -70,7 +72,8 @@ useEffect(() => {
                   alt={testimonial.name}
                   style={{width: '12rem', height: '15rem'}}
                   className="mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100"
-                  src={`https://drive.google.com/thumbnail?id=${testimonial.image}`}
+                  // src={`https://drive.google.com/thumbnail?id=${testimonial.image}`}
+                  src={index==0 ? madhan:shravan}
                   loading="lazy"
                 />
                 <h2 className="text-gray-900 font-bold title-font tracking-wider text-sm" style={{fontSize: '20px'}}>{testimonial.name}</h2>
