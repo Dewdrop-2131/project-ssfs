@@ -92,8 +92,8 @@ const FormContact = () => {
       <form onSubmit={handleSubmit} className='form-design'>
         {/* Dynamically render form fields from Firebase data */}
         {formFields.map((field) => (
-          <div className="row" key={field.id}>
-            <label htmlFor={field.id} className="col-25">
+          <div className="row form-align" key={field.id}>
+            <label htmlFor={field.id} className="col-25 form-label">
               {field.label} {field.required && <span style={{ color: 'red' }}>*</span>}
             </label>
             <div className="col-75">

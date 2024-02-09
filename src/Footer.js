@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Popup from 'reactjs-popup';
+// import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import { collection, getDocs, where } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from './firebase';
 
 const Footer = () => {
@@ -10,8 +10,8 @@ const Footer = () => {
   const[hod, setHod] = useState('');
   const[email, setEmail] = useState('');
   const[phone, setPhone] = useState('');
-  const[terms, setTerms] = useState('');
-  const[privacy,setPrivacy] = useState('');
+  // const[terms, setTerms] = useState('');
+  // const[privacy,setPrivacy] = useState('');
 
   const fetchPost = async () => {
     const querySnapshot = await getDocs(collection(db, "collection"));
@@ -23,8 +23,8 @@ if (querySnapshot.size > 0) {
     setHod(docData.address);
     setEmail(docData.email);
     setPhone(docData.phone);
-    setTerms(docData.terms);
-    setPrivacy(docData.privacy);
+    // setTerms(docData.terms);
+    // setPrivacy(docData.privacy);
     console.log("Document data:", docData);
 } else {
     // Document not found

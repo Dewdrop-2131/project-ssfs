@@ -64,7 +64,7 @@ useEffect(() => {
       </div>
     </div> 
       <div className="containerAbout px-5 py-24 mx-auto">
-  <div className="flex-wrap -m-4 justify-center">
+  <div className="key-persons">
     {keyPersons.map((testimonial, index) => (
       <div key={index} className="w-full p-4 justify-center">
         <div className="h-full text-center">
