@@ -87,17 +87,15 @@ const FormContact = () => {
   };
 
   return (
-    <div className="container" style={{ lineHeight: "1.5" }}>
+    <div className="container">
       <h2>Please fill the form for Service Request</h2>
       <form onSubmit={handleSubmit} className='form-design'>
         {/* Dynamically render form fields from Firebase data */}
         {formFields.map((field) => (
           <div className="row" key={field.id}>
-            <div className="col-25">
-              <label style={{ color: 'black' }} htmlFor={field.id}>
-                {field.label} {field.required && <span style={{ color: 'red' }}>*</span>}
-              </label>
-            </div>
+            <label htmlFor={field.id} className="col-25">
+              {field.label} {field.required && <span style={{ color: 'red' }}>*</span>}
+            </label>
             <div className="col-75">
               {field.id === "service_needed" ? (
                 <select
@@ -126,19 +124,19 @@ const FormContact = () => {
             </div>
           </div>
         ))}
-        <div style={{display: 'flex'}}>
-          <input className='col-20'
+        <div className="row checkbox-row" style={{ width: "70%", marginLeft: "auto"}}>
+          <input
             type="checkbox"
             id="directCallConsent"
             name="directCallConsent"
             onChange={handleInputChange}
           />
-          <label htmlFor="directCallConsent" className='col-70'>
+          <label htmlFor="directCallConsent" className="col-70">
             By clicking this checkbox, you agree for a direct call consultation from our agents, if not consultation will be through email.
           </label>
         </div>
         {/* Submit button */}
-        <div className="row row-submit" type="submit">
+        <div className="row row-submit">
           <input className="submit" type="submit" value="Submit" />
         </div>
       </form>

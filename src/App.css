@@ -1,5 +1,4 @@
 /* Defult */
-
 .App {
   text-align: center;
 
@@ -10,7 +9,6 @@
 }
 
 /* Css for header */
-
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -35,6 +33,8 @@
 .logo-dec {
   text-decoration: none;
   color: white;
+  display: flex;
+  align-items: center;
 }
 
 .logo1 {
@@ -42,14 +42,11 @@
   height: 40px;
   border-radius: 50%;
   overflow: hidden;
-  /* Ensure the image is clipped within the circular container */
 }
 
 .logo1 img {
   width: 100%;
-  /* Ensure the image fills the circular container */
   height: auto;
-  /* Maintain aspect ratio */
 }
 
 .header-options:hover {
@@ -60,11 +57,20 @@
 .buttons {
   display: flex;
   align-items: center;
+  flex-grow: 1; /* Take up remaining space */
+  justify-content: flex-end; /* Align buttons to the right */
 }
 
-.logo-container {
-  display: flex;
-  align-items: center;
+.buttons.expanded {
+  flex-direction: column; /* Stack buttons vertically when expanded */
+}
+
+.buttons a {
+  text-decoration: none; /* Remove underline from button links */
+}
+
+.buttons a:not(:last-child) {
+  margin-right: 10px; /* Add spacing between buttons */
 }
 
 button {
@@ -83,6 +89,75 @@ button:hover {
   font-weight: bold;
 }
 
+.hamburger {
+  display: none; /* Initially hide for larger screens */
+  cursor: pointer;
+}
+
+/* Media query to show hamburger for smaller screens */
+@media screen and (max-width: 1023px) {
+  .hamburger {
+    display: block; /* Show for smaller screens */
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+  }
+
+  /* Hamburger animation */
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .buttons {
+    display: none; /* Hide navigation buttons by default */
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: #333;
+    flex-direction: column;
+  }
+
+  .buttons.expanded {
+    display: flex; /* Show navigation buttons when expanded */
+  }
+
+  .buttons a {
+    text-align: center;
+    padding: 15px 0;
+  }
+}
+
+
+@media screen and (max-width: 768px){
+  .logo1{
+    width:35px;
+    height:45px;
+  }
+  .logo{
+    font-size: 20px;
+  }
+}
+
+
 /* Footer CSS */
 
 .footer {
@@ -90,33 +165,49 @@ button:hover {
   color: white;
   padding: 10px;
   position: relative;
-  bottom: 0px;
-  right: 0px;
-  left: 0px;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .footer-content {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+}
+
+.left-text,
+.right-text {
+  padding: 0 25px;
+  text-align: center;
+  margin: 10px 0;
 }
 
 .left-text {
-  padding-left: 25px;
-  margin: 0;
+  order: 1; /* Change the order on small screens */
 }
 
 .right-text {
-  padding-right: 25px;
-  margin: 0;
+  order: 2; /* Change the order on small screens */
 }
 
-.left {
-  text-align: left;
-}
+@media screen and (min-width: 768px) {
+  .footer-content {
+    flex-direction: row;
+  }
 
-.right {
-  text-align: right;
+  .left-text,
+  .right-text {
+    width: 50%; /* Make each section take up half the space on larger screens */
+    text-align: left;
+    margin: 0;
+    order: 0; /* Reset the order */
+  }
+
+  .right-text {
+    text-align: right;
+  }
 }
 
 .term:hover,
@@ -128,7 +219,6 @@ button:hover {
   padding: 0;
 }
 
-
 .custom-popup {
   background-color: #fff;
   border: 2px solid #ccc;
@@ -138,8 +228,7 @@ button:hover {
 .custom-close-button {
   background-color: #007bff;
   color: #fff;
-  border-radius:10px;
-  /* padding: 10px 20px; */
+  border-radius: 10px;
   cursor: pointer;
 }
 
@@ -149,10 +238,18 @@ button:hover {
   line-height: 1.5;
 }
 
+.popup-content {
+  border-radius: 10px;
+}
+
+
 
 /* ContactForm.css */
 
-/* Style inputs, select elements, and textareas */
+.container {
+  border-radius: 5px;
+  padding: 20px;
+}
 
 .form-design {
   width: 70%;
@@ -165,7 +262,7 @@ button:hover {
   background-color: gainsboro;
 }
 
-input[type=text],
+input[type="text"],
 select,
 textarea {
   width: 100%;
@@ -176,13 +273,25 @@ textarea {
   resize: vertical;
 }
 
-/* Style the label to display next to the inputs */
 label {
   padding: 12px 15px 12px 0;
   display: inline-block;
 }
 
-/* Style the submit button */
+.row {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.row label {
+  flex: 1;
+  padding-right: 10px;
+}
+
+.row .col-75 {
+  flex: 2;
+}
+
 .row-submit {
   text-align: center;
   padding-top: 20px;
@@ -192,28 +301,16 @@ label {
   font-size: 15px;
 }
 
-input[type=submit] {
-  background-color: #04AA6D;
+input[type="submit"] {
+  background-color: #04aa6d;
   color: white;
   padding: 12px 100px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  /* Remove float and add margin for centering */
   margin: 0 auto;
 }
 
-/* Style the container */
-.container {
-  border-radius: 5px;
-  padding-top: 20px;
-  height: auto;
-  padding-left: 200px;
-  padding-right: 200px;
-  padding-bottom: 100px;
-}
-
-/* Floating column for labels: 25% width */
 .col-25 {
   float: left;
   width: 25%;
@@ -221,7 +318,6 @@ input[type=submit] {
   text-align: right;
 }
 
-/* Floating column for inputs: 75% width */
 .col-75 {
   float: left;
   width: 75%;
@@ -240,23 +336,39 @@ input[type=submit] {
   margin-top: 6px;
 }
 
-/* Clear floats after the columns */
+.checkbox-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 .row:after {
   content: "";
   display: table;
   clear: both;
 }
 
-/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
+  .form-design {
+    width: 90%;
+  }
 
   .col-25,
   .col-75,
-  input[type=submit] {
+  input[type="submit"] {
     width: 100%;
     margin-top: 0;
   }
+
+  .row label {
+    padding: 0;
+    margin-bottom: 5px;
+  }
 }
+
+
+
+
 
 
 /* About Page CSS */
@@ -267,12 +379,7 @@ input[type=submit] {
 
 .body-font {
   font-family: 'Roboto', sans-serif;
-  /* Replace with your preferred font */
 }
-
-.whatAreWeDes {}
-
-.howAreWeBuiltDes {}
 
 .containerAbout {
   /* width: 100%; */
@@ -304,7 +411,6 @@ input[type=submit] {
 
 .flex-wrap {
   flex-wrap: nowrap;
-  /* Prevent wrapping to the next line */
 }
 
 .-m-4 {
@@ -405,7 +511,6 @@ input[type=submit] {
 
 .title-font {
   font-family: 'Montserrat', sans-serif;
-  /* Replace with your preferred font */
 }
 
 .tracking-wider {
@@ -428,21 +533,16 @@ input[type=submit] {
   color: #718096;
 }
 
-/* Additional styles for the paragraph */
-/* Adjust as needed based on your design */
 p {
   margin-bottom: 1.25rem;
 }
 
-/* Adjustments for responsive design */
+
 @media (max-width: 768px) {
   .lg\:w-1\/3 {
     flex: 0 0 100%;
-    /* Set flex-basis to 100% for smaller screens */
   }
 }
-
-/* divs About */
 
 .outerDiv {
   display: flex;
@@ -485,7 +585,6 @@ p {
 
 .rightDivAboutHeading {
   text-align: right;
-
 }
 
 .styled-list {
@@ -507,26 +606,65 @@ p {
   border: 1px solid #ddd;
   padding: 10px;
   margin-top: 8px;
-  /* Adjust as needed */
   margin-right: 120px;
   margin-bottom: 30px;
   width: 50%;
   border-radius: box;
-
 }
+
+/* Add your existing CSS here */
+
+@media (max-width: 768px) {
+  .containerAbout .flex-wrap {
+    flex-direction: column;
+    align-items: center;
+  }
+  .containerAbout .flex-wrap .w-full {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .containerAbout .flex-wrap .lg:w-1\/3 {
+    width: 100%;
+  }
+}
+
 
 
 /* Updated CSS for FirstPage or Home */
-
 .above {
-  padding: 30px;
+  padding: 20px;
   text-align: center;
-  font-size: 24px;
+  font-size: 25px;
   font-weight: bold;
+  color: #fff;
+  background-color: #2c3e50;
+  border-radius: 10px;
+  transition: transform 0.3s ease; /* Transition for scaling */
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  box-shadow: none; /* Remove box shadow */
 }
+
+
+.above:active {
+  transform: scale(0.95); /* Scale down by 5% when clicked */
+  opacity: 0.6; /* Reduce opacity when clicked */
+}
+
+@media (max-width: 768px) {
+  .above {
+    font-size: 12px; /* Decrease font size */
+    padding: 10px; /* Decrease padding */
+    width: 80%; /* Decrease width */
+  }
+}
+
 
 .containerF {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   padding: 20px;
 }
@@ -536,47 +674,34 @@ p {
   justify-content: center;
   align-items: center;
   padding: 20px;
+  border: none; /* Remove border */
+  background-color: transparent;
+  max-width: 600px; /* Set wider max-width */
+  margin: 0 auto; /* Center the div */
 }
 
 .leftDiv,
-.rightDiv {
-  width: 30%;
-  border: 5px solid #ccc;
+.rightDiv,
+.centerDiv {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
   padding: 20px;
   box-sizing: border-box;
+  border: 5px solid #ccc;
   border-radius: 15px;
   background-color: white;
 }
 
-.leftDiv {
-  margin-left: 150px;
-  /* Pushes leftDiv to the left */
-}
-
-.rightDiv {
-  margin-right: 150px;
-  /* Pushes rightDiv to the right */
-}
-
-.centerDiv {
-  width: 48%;
-  ;
-  padding: 20px;
-  box-sizing: border-box;
-  text-align: left;
-}
-
-/*  commented to fit the images of vision and mission to center*/
-/* .leftDiv,
-.rightDiv {
-  text-align: justify;
-} */
-
 .centerDiv {
   text-align: center;
+  border: none; /* Remove border */
+  background-color: none;
+  background-color: transparent;
+  max-width: 600px; /* Set wider max-width */
+  margin: 0 auto; /* Center the div */
 }
 
-/* Optional: Add some styles to the ul and li elements in containerC */
 .centerDiv ul {
   list-style-type: decimal;
   padding: 0;
@@ -588,14 +713,9 @@ p {
 }
 
 .slick-slider {
-  div {
-    display: flex !important;
-  }
-
   width: 100%;
   margin: 0 auto;
   overflow: hidden;
-  /* Hide overflowing content */
 }
 
 .slick-list {
@@ -603,21 +723,14 @@ p {
   padding: 0;
 }
 
-.slick-slide {
-  box-sizing: border-box;
-}
-
 .slick-slide img {
-  width: 90%;
-  /* Adjust the width of the images */
+  width: 100%;
   height: auto;
   border-radius: 8px;
-  margin: 0 10px 15px 10px;
-  /* Adjust the margin to create space between images and around each image */
+  margin: 0 0 15px 0;
   transition: transform 0.3s ease-in-out;
 }
 
-/* Remove the right margin for the last image to avoid extra space */
 .slick-slide:last-child img {
   margin-right: 0;
 }
@@ -626,24 +739,52 @@ p {
   transform: scale(1.05);
 }
 
+/* Remove the media queries for imageVision and imageMission */
 .imageVision,
 .imageMission {
   width: 220px;
   height: 135px;
-
+  margin: 0 auto 10px;
 }
-
 
 .checkbox-container {
   display: flex;
   justify-content: flex-end;
-  /* Align items to the end of the container */
   margin-bottom: 10px;
-  /* Adjust margin as needed */
 }
 
+.responsive-image {
+  width: 100%;
+  height: auto; /* Set height to auto to maintain aspect ratio */
+  max-height: 300px; /* Maximum height */
+  object-fit: cover;
+  border-radius: 20px;
+}
 
-/*popups*/
-.popup-content {
-  border-radius: 10px;
+/* For screens up to 425px width */
+@media only screen and (max-width: 425px) {
+  .responsive-image {
+    max-height: 150px;
+  }
+}
+
+/* For screens from 426px to 720px width */
+@media only screen and (min-width: 426px) and (max-width: 720px) {
+  .responsive-image {
+    max-height: 200px;
+  }
+}
+
+/* For screens from 721px to 1024px width */
+@media only screen and (min-width: 721px) and (max-width: 1024px) {
+  .responsive-image {
+    max-height: 300px;
+  }
+}
+
+/* For screens larger than 1024px width */
+@media only screen and (min-width: 1025px) {
+  .responsive-image {
+    max-height: 300px;
+  }
 }

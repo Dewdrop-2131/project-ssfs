@@ -8,6 +8,7 @@ import About from './About';
 import Services from './Services';
 import Home from './Home';
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -28,5 +29,3 @@ function App() {
 }
 
 export default App;
-
-// <div className="main-container"> </div>

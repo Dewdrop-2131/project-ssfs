@@ -63,37 +63,37 @@ useEffect(() => {
         </div>
       </div>
     </div> 
-    <div className="containerAbout px-5 py-24 mx-auto">
-        <div className="flex flex-wrap -m-4" style={{margin: '0 15%', justifyContent: 'center'}}>
-          {keyPersons.map((testimonial, index) => (
-            <div key={index} className="lg:w-1/3 lg:mb-0 mb-6 p-4">
-              <div className="h-full text-center">
-                <img
-                  alt={testimonial.name}
-                  style={{width: '12rem', height: '15rem'}}
-                  className="mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100"
-                  // src={`https://drive.google.com/thumbnail?id=${testimonial.image}`}
-                  src={index==0 ? madhan:shravan}
-                  loading="lazy"
-                />
-                <h2 className="text-gray-900 font-bold title-font tracking-wider text-sm" style={{fontSize: '20px'}}>{testimonial.name}</h2>
-                <p className="text-gray-500">{testimonial.role}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="flex flex-wrap -m-4" style={{margin: '0 15%', justifyContent: 'center'}}>
-          <div className="lg:w-1/3 lg:mb-0 mb-6 p-4">
-            <div className="h-full text-center">
-              <h2 className="text-gray-900 font-bold title-font tracking-wider text-sm" style={{fontSize: '20px'}}>Ganesh K</h2>
-              <p className="text-gray-500">Managing Director</p>
-            </div>
-          </div>
+      <div className="containerAbout px-5 py-24 mx-auto">
+  <div className="flex-wrap -m-4 justify-center">
+    {keyPersons.map((testimonial, index) => (
+      <div key={index} className="w-full p-4 justify-center">
+        <div className="h-full text-center">
+          <img
+            alt={testimonial.name}
+            style={{ width: '12rem', height: '15rem' }}
+            className="mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100"
+            src={index === 0 ? madhan : shravan}
+            loading="lazy"
+          />
+          <h2 className="text-gray-900 font-bold text-lg mb-2">{testimonial.name}</h2>
+          <p className="text-gray-500 text-sm">{testimonial.role}</p>
         </div>
       </div>
+    ))}
+  </div>
+  <div className="flex-wrap -m-4 justify-center">
+    <div className="w-full p-4 justify-center">
+      <div className="h-full text-center">
+        <h2 className="text-gray-900 font-bold text-lg mb-2">Ganesh K</h2>
+        <p className="text-gray-500 text-sm">Managing Director</p>
+      </div>
+    </div>
+  </div>
+</div>
     </section>
   );
 };
 
 
 export default About;
+

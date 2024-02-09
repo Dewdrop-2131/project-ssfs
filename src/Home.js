@@ -4,9 +4,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { collection, getDocs, where } from "firebase/firestore";
 import {db} from './firebase';
-import vision from './Vision.png';
-import mission from './mission.png';
-
 
 const Home = () => {
   const settings = {
@@ -16,7 +13,7 @@ const Home = () => {
     slidesToShow: 2,
     slidesToScroll: 2.5,
     autoplay: true,
-    autoplaySpeed: 2000, // Adjust the speed of auto-sliding in milliseconds
+    autoplaySpeed: 2000,
   };
 
   const [website, setWebsite] = useState('');
@@ -61,25 +58,24 @@ const Home = () => {
 
   return (
     <section>
-      <div>
-        <Slider {...settings}>
-          {services.map((service) => (
-            <div key={service.id}>
-              <img 
-                src={`https://drive.google.com/thumbnail?id=${service}`} 
-                alt="service" 
-                style={{ padding: '20px 50px', width: '600px', height: '300px', borderRadius: '50px' }}
-                loading="lazy"
-              />
-            </div>
-          ))}
-        </Slider>
+      <div style={{ maxWidth: '100%', overflowX: 'auto', paddingTop: '30px' }}>
+  <Slider {...settings}>
+    {services.map((service, index) => (
+      <div key={service.id} style={{ padding: '0 10px', marginRight: '20px', marginBottom: '20px', marginTop: '20px' }}>
+        <img
+          src={`https://drive.google.com/thumbnail?id=${service}`}
+          alt="service"
+          style={{ width: '93%', height: '300px', objectFit: 'cover', borderRadius: '20px' }}
+          loading="lazy"
+          className="responsive-image"
+        />
       </div>
-
+    ))}
+  </Slider>
+</div>
       <div>
         <h2 className="above">{website}</h2>
       </div>
-
       <div className="containerF">
         <div className="leftDiv">
           <p style={{ textAlign:"center", fontSize:"25px", fontWeight: 'bold', fontFamily: 'math'}}><u>Vision</u></p>
