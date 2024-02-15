@@ -73,6 +73,9 @@ const FormContact = () => {
         checkbox.checked = false;
       }
 
+      // Open default email client with pre-filled email
+      window.open(`mailto:info.stellarscape@gmail.com.com?subject=Service Request&body=Dear Stellarscape,%0D%0A%0D%0AWe are interested in your services and would like to request more information. Please get in touch with us at your earliest convenience.%0D%0A%0D%0AName: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0AMobile: ${formData.mobile}%0D%0AAddress: ${formData.address}%0D%0AContact Timings: ${formData.contact_timings}%0D%0AService Needed: ${formData.service_needed}%0D%0A%0D%0AThank you.`);
+
       setShowSuccess(true);
       setTimeout(() => {
         setShowSuccess(false);
@@ -86,6 +89,8 @@ const FormContact = () => {
     }
   };
 
+
+  
   return (
     <div className="container">
       <h2>Please fill the form for Service Request</h2>
@@ -137,7 +142,7 @@ const FormContact = () => {
         </div>
         {/* Submit button */}
         <div className="row row-submit">
-          <input className="submit" type="submit" value="Submit" />
+          <input className="submit" type="submit" value="Submit"/>
         </div>
       </form>
       {showSuccess && (
@@ -151,4 +156,3 @@ const FormContact = () => {
 };
 
 export default FormContact;
-
